@@ -10,7 +10,7 @@ class Program
     public static void main(String[] args) {
         CreateFile();
         int nCopies = 1;
-        int maxIterations = 1000;
+        int maxIterations = 500;
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM HH:mm:ss");
 
 
@@ -21,7 +21,9 @@ class Program
         int[] nAnts = { 20 };
         double[] alphas = {1};
         double[] betas = {2};
-        double[] rhos = IntStream.range(0, 101).asDoubleStream().map(i -> 0.9 + (i * 0.001)).toArray();
+	//double[] rhos = {0.8};
+	//double[] Qs = {20};
+	double[] rhos = IntStream.range(0, 101).asDoubleStream().map(i -> 0.9 + (i * 0.001)).toArray();
         double[] Qs = IntStream.range(0, 101).asDoubleStream().map(i -> i * 0.1).toArray();
         int[] sigmas ={ 1 };
 
@@ -104,7 +106,7 @@ class Program
 
     static void CreateFile(){
         try {
-            FileWriter writer = new FileWriter("output.csv",true);
+            FileWriter writer = new FileWriter("../results/zoom.csv",false);
             String headers =
                     "iteration," +
                             "alpha," +
@@ -124,7 +126,7 @@ class Program
     }
     static void Store(ACO[] colonies, int iterations) {
         try{
-            FileWriter writer = new FileWriter("output.csv",true);
+            FileWriter writer = new FileWriter("../results/zoom.csv",true);
             for (ACO colony : colonies) {
                 String line =
                         iterations + "," +
