@@ -21,12 +21,11 @@ class Program
         int[] nAnts = { 20 };
         double[] alphas = {1};
         double[] betas = {2};
-	//double[] rhos = {0.8};
-	//double[] Qs = {20};
-	double[] rhos = IntStream.range(0, 101).asDoubleStream().map(i -> 0.9 + (i * 0.001)).toArray();
-        double[] Qs = IntStream.range(0, 101).asDoubleStream().map(i -> i * 0.1).toArray();
-        int[] sigmas ={ 1 };
-
+        //double[] Qs = {20};
+        double[] rhos = IntStream.range(0, 10).asDoubleStream().map(i -> i * 0.1).toArray();
+        double[] Qs = IntStream.range(1, 11).asDoubleStream().map(i -> i*10).toArray();
+        //int[] sigmas = IntStream.range(0, 50).map(i -> 1 + (i * 2)).toArray();
+        int[] sigmas = {1};
 
         ACO[] colonies = new ACO[nAnts.length * alphas.length * betas.length * sigmas.length * rhos.length * Qs.length * nCopies];
 
@@ -73,7 +72,7 @@ class Program
             }
             iterations++;
             System.out.println(LocalDateTime.now().format(dateFormatter) + String.format(": %.2f", ((double)iterations / (double)maxIterations) * 100));
-            if((iterations == 50) | (iterations == 250) | (iterations == 500)){
+            if((iterations == 10) |(iterations == 50) | (iterations == 250) | (iterations == 500)){
                 Store(colonies, iterations);
             }
         }
@@ -106,7 +105,7 @@ class Program
 
     static void CreateFile(){
         try {
-            FileWriter writer = new FileWriter("../results/zoom.csv",false);
+            FileWriter writer = new FileWriter("../results/output.csv",false);
             String headers =
                     "iteration," +
                             "alpha," +
@@ -126,7 +125,7 @@ class Program
     }
     static void Store(ACO[] colonies, int iterations) {
         try{
-            FileWriter writer = new FileWriter("../results/zoom.csv",true);
+            FileWriter writer = new FileWriter("../results/output.csv",true);
             for (ACO colony : colonies) {
                 String line =
                         iterations + "," +

@@ -43,6 +43,10 @@ public class ACO {
         UpdateAnts();
         UpdatePheromones();
         currBestLength = CurrBestLength();
+        if (currBestLength < bestLength)
+        {
+            bestLength = currBestLength;
+        }
         countBestPathAnts();
         // double pheremonesDiversity = PheromoneDiversity(pheromones);
         // double hammingDistance2 = AverageHammingDistance2(ants);
@@ -282,7 +286,6 @@ public class ACO {
                         increase = Q * (1 / length);
                         if (length < bestLength)
                         {
-                            bestLength = length;
                             increase = increase * sigma;
                         }
 
