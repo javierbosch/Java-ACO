@@ -15,8 +15,8 @@ class Program
 
 
         System.out.println(LocalDateTime.now().format(dateFormatter) + ": Starting simulation");
-        String filename = "att48.txt";
-        double[][] costMatrix = ReadProblem(filename, 48);
+        String filename = "att48_half.txt";
+        double[][] costMatrix = ReadProblem(filename, 24);
 
         int[] nAnts = { 20 };
         double[] alphas = {1};
@@ -72,7 +72,7 @@ class Program
             }
             iterations++;
             System.out.println(LocalDateTime.now().format(dateFormatter) + String.format(": %.2f", ((double)iterations / (double)maxIterations) * 100));
-            if((iterations == 1) | (iterations == 10) | (iterations == 50) | (iterations == 250) | (iterations == 500)){
+            if((iterations == 1) | (iterations == 10) | (iterations == 50) | (iterations == 100) | (iterations == 250) | (iterations == 500)){
                 Store(colonies, iterations);
             }
         }
@@ -105,7 +105,7 @@ class Program
 
     static void CreateFile(){
         try {
-            FileWriter writer = new FileWriter("../results/output-full.csv",false);
+            FileWriter writer = new FileWriter("../results/output-half2.csv",false);
             String headers =
                     "iteration," +
                             "alpha," +
@@ -125,7 +125,7 @@ class Program
     }
     static void Store(ACO[] colonies, int iterations) {
         try{
-            FileWriter writer = new FileWriter("../results/output-full.csv",true);
+            FileWriter writer = new FileWriter("../results/output-half2.csv",true);
             for (ACO colony : colonies) {
                 String line =
                         iterations + "," +
