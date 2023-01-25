@@ -15,8 +15,8 @@ class Program
 
 
         System.out.println(LocalDateTime.now().format(dateFormatter) + ": Starting simulation");
-        String filename = "att48_double.txt";
-        double[][] costMatrix = ReadProblem(filename, 96);
+        String filename = "att48.txt";
+        double[][] costMatrix = ReadProblem(filename, 48);
 
         int[] nAnts = { 20 };
         double[] alphas = {1};
@@ -105,7 +105,7 @@ class Program
 
     static void CreateFile(){
         try {
-            FileWriter writer = new FileWriter("../results/output.csv",false);
+            FileWriter writer = new FileWriter("../results/output-full.csv",false);
             String headers =
                     "iteration," +
                             "alpha," +
@@ -125,7 +125,7 @@ class Program
     }
     static void Store(ACO[] colonies, int iterations) {
         try{
-            FileWriter writer = new FileWriter("../results/output.csv",true);
+            FileWriter writer = new FileWriter("../results/output-full.csv",true);
             for (ACO colony : colonies) {
                 String line =
                         iterations + "," +
