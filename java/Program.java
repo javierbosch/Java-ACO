@@ -10,20 +10,20 @@ class Program
     public static void main(String[] args) {
         CreateFile();
         int nCopies = 1;
-        int maxIterations = 500;
+        int maxIterations = 100;
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM HH:mm:ss");
 
 
         System.out.println(LocalDateTime.now().format(dateFormatter) + ": Starting simulation");
-        String filename = "att48.txt";
-        double[][] costMatrix = ReadProblem(filename, 48);
+        String filename = "att48_double.txt";
+        double[][] costMatrix = ReadProblem(filename, 96);
 
         int[] nAnts = { 20 };
         double[] alphas = {1};
         double[] betas = {2};
         //double[] Qs = {20};
-        double[] rhos = IntStream.range(0, 10).asDoubleStream().map(i -> i * 0.1).toArray();
-        double[] Qs = IntStream.range(1, 11).asDoubleStream().map(i -> i*10).toArray();
+        double[] rhos = IntStream.range(0, 101).asDoubleStream().map(i -> i * 0.01).toArray();
+        double[] Qs = IntStream.range(1, 101).asDoubleStream().map(i -> i).toArray();
         //int[] sigmas = IntStream.range(0, 50).map(i -> 1 + (i * 2)).toArray();
         int[] sigmas = {1};
 
@@ -72,7 +72,7 @@ class Program
             }
             iterations++;
             System.out.println(LocalDateTime.now().format(dateFormatter) + String.format(": %.2f", ((double)iterations / (double)maxIterations) * 100));
-            if((iterations == 10) |(iterations == 50) | (iterations == 250) | (iterations == 500)){
+            if((iterations == 1) | (iterations == 10) | (iterations == 50) | (iterations == 250) | (iterations == 500)){
                 Store(colonies, iterations);
             }
         }
