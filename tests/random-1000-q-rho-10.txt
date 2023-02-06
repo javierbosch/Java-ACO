@@ -1,0 +1,10 @@
+nCopies,1
+maxIterations,10
+nAnts,20
+alphas,1
+betas,1
+Qs,0,100000,101
+rhos,0,1,101
+sigmas,1
+map_file,random1000_normal.txt
+output_file,rho-q-random1000_normal.csv

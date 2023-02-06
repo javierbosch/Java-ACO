@@ -1,0 +1,10 @@
+nCopies,1
+maxIterations,10
+nAnts,20
+alphas,1
+betas,1
+Qs,0,1000,101
+rhos,0,1,101
+sigmas,1
+map_file,att48.txt
+output_file,q-rho-20.csv
